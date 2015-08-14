@@ -18,12 +18,13 @@ int main(int argc, char **argv)
 	//converts input to type int
 	key = atoi(keyString);
 	
-	//checks that the key is valid
+	//checks that the key is valid and reassigns it if it is invalid
 	while (key == 0)
 	{
 		printf("invalid key, enter a new key: ");
 		gets(keyString);
-		
+		key = atoi(keyString);
+
 	}
 	// checks for key size and reduces it to something usable
 	if (key > 26)					
