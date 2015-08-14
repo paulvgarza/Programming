@@ -6,18 +6,28 @@
 int main(int argc, char **argv)
 {
 	// initializes the variables
-	int key = atoi(argv[1]);	// The cipher's key
-	int letter = 'A'; 			// A counter to display the cipher's conversion
+	char keyString[10];				// an array to store the input from the user as a string
+	int key;					// The cipher's key, after converted to an int
+	int letter = 'A'; 				// A counter to display the cipher's conversion
 	char p[255];					// An array to store the text entered by the user
-	typedef int bool;				// creates a boolen type
-		#define true 1
-		#define false 0
+	
+	printf("Enter your key: ");
+	gets(keyString);
+	
+	key = atoi(keyString);
+	
+	while (key == 0)
+	{
+		printf("invalid key, enter a new key: ");
+		gets(keyString);
 		
+	}
+	
 	if (key > 26)					// checks for key size and reduces it to something usable
 		{
 			key = key%26;
 		}
-		
+
 	//prompts the user for the text to be encrypted
 	printf("Enter the text that you would like to encrypt: ");
 	gets(p);
@@ -33,32 +43,25 @@ int main(int argc, char **argv)
 	//the cipher
 	for(int i = 0 ; i < n; i++)
 		{
-			if (isupper(p[i]) == true)  //for uppercase characters
+			if (isupper(p[i]))  //for uppercase characters
 			{
 				p[i] += key;
-				
 				if ( (int) p[i] > 90)
 				{
 					p[i] -= 26;
 				}
-				
-			}
-			
+			}			
 			else if ((p[i] < 65) || (p[i] > 65 && p[i] < 97) || (p[i] > 122)) // for nonalpha characters
-			{}
-			
+			{}			
 			else // for lowercase ascii characters
-			{p[i] -= 97;
-			p[i] = p[i] + key;
-			
-			if (p[i] > 25)
 			{
-				p[i] -= 26;
-			}
-			
-			p[i] += 97;
-
-
+				p[i] -= 97;
+				p[i] = p[i] + key;			
+					if (p[i] > 25)
+					{
+						p[i] -= 26;
+					}
+				p[i] += 97;
 			}
 			
 		}
