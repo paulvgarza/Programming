@@ -6,24 +6,27 @@
 int main(int argc, char **argv)
 {
 	// initializes the variables
-	char keyString[10];				// an array to store the input from the user as a string
-	int key;					// The cipher's key, after converted to an int
-	int letter = 'A'; 				// A counter to display the cipher's conversion
-	char p[255];					// An array to store the text entered by the user
+	char keyString[10];     		// A placeholder for the string entered by user
+	int key;              			// The cipher's key after keyString is converted to type int
+	int letter = 'A'; 			// A counter to display the cipher's conversion
+	char p[255];				// An array to store the text entered by the user
 	
+	// prompts the user for key input
 	printf("Enter your key: ");
 	gets(keyString);
 	
+	//converts input to type int
 	key = atoi(keyString);
 	
+	//checks that the key is valid
 	while (key == 0)
 	{
 		printf("invalid key, enter a new key: ");
 		gets(keyString);
 		
 	}
-	
-	if (key > 26)					// checks for key size and reduces it to something usable
+	// checks for key size and reduces it to something usable
+	if (key > 26)					
 		{
 			key = key%26;
 		}
@@ -38,12 +41,10 @@ int main(int argc, char **argv)
 	//displayes the key
 	printf("The letter %c becomes the letter %c\n\n", letter, (letter + key));
 
-	int n = strlen(p); 
-	
 	//the cipher
-	for(int i = 0 ; i < n; i++)
+	for(int i = 0, n = strlen(p); i < n; i++)
 		{
-			if (isupper(p[i]))  //for uppercase characters
+			if (isupper(p[i]))                                               //for uppercase characters
 			{
 				p[i] += key;
 				if ( (int) p[i] > 90)
@@ -53,7 +54,7 @@ int main(int argc, char **argv)
 			}			
 			else if ((p[i] < 65) || (p[i] > 65 && p[i] < 97) || (p[i] > 122)) // for nonalpha characters
 			{}			
-			else // for lowercase ascii characters
+			else                                                              // for lowercase ascii characters
 			{
 				p[i] -= 97;
 				p[i] = p[i] + key;			
@@ -65,6 +66,9 @@ int main(int argc, char **argv)
 			}
 			
 		}
+		
+	//prints the final output	
 	printf("%s is the output\n", p);
+	
 	return 0;
 }
