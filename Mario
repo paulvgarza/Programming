@@ -1,0 +1,40 @@
+#include <stdio.h>
+int height;
+int i;
+int j;
+int k;
+
+int main() {
+  
+  // requests the height from the user
+  printf("Enter the height of your pyramid: ");
+  scanf("%i", &height);
+
+	// checks if the height of the pyramid is valid
+  if (height > 24 || height < 1) {
+		do
+		{
+			printf("Height invalid, please enter another height between 1-24: ");
+			scanf("%i", &height);
+		}
+		while(height >24 || height <1);
+	}
+	
+	//the loop used to print the pyramid characters and the spaces
+	for (i = 0; i < height; i++) {
+
+        for(int j = 1; j < height-i; j++) { //used to decide how any spaces will be printed before the sharps
+            printf(" ");
+        }
+
+		for(int k = 0; k < i+i+2; k++) { //prints the sharps
+			printf("#");
+			if (k == i) {
+				printf(" "); 
+			}
+		}
+		printf("\n");
+		
+	}
+	return 0;
+}
