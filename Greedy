@@ -1,0 +1,68 @@
+#include <stdio.h>
+#include <math.h>
+
+float change = 0;
+int quar = 0;
+int nick = 0;
+int dime = 0;
+int penn = 0;
+
+int main(void) {
+	
+	//requests the input
+	printf("How much change is owed?: \n");
+	scanf("%f", &change);
+	
+	//checks if the amount is valid (but not if a number)
+	if (change <= 0) {
+		do {
+			printf("Retry: ");
+			scanf("%f", &change);
+		}
+		while (change > 0);
+	}
+	
+	//rounds the cents and makes them into an integer
+	
+	int cents = (int)round(change*100);
+	
+	//determines the amount of quarters, dimes, nickles, and pennies required
+	if (cents >= 25) {
+		do {
+			cents -= 25;
+			quar += 1;
+		}
+	while (cents >=25);
+	}
+	
+	if (cents >= 10) {
+		
+		do {
+			cents -= 10;
+			dime += 1;
+		}
+	while (cents >=10);
+	}
+		
+	if (cents >=5) {
+			do {
+			cents -= 5;
+			nick += 1;
+		}
+	while (cents >=5);
+	}
+	
+	if (cents >=1) {
+		do {
+			cents -= 1;
+			penn += 1;
+		}
+	while (cents >=1);
+	}
+	
+	//prints the output
+	int coins = quar + dime + nick + penn;
+	printf("you will have %i quarters, %i dimes, %i nickels, and %i pennies. This is a total of %i coins", quar, dime, nick, penn, coins);
+	
+	return 0;
+}
